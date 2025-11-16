@@ -1,0 +1,300 @@
+1. Go over the completed project
+2. Discuss general implementation
+   a) The routes
+   b) The Database model
+
+3. Creating a virtual environment
+    from within VS Code terminal window type:
+
+        python -m venv venv
+
+4. Activating the virtual environment
+    a) type the following command in the VS Code terminal window
+
+        * In Mac OS:      source venv/bin/activate
+        * In Windows:     .\venv\Scripts\activate  (*)
+        
+    Note: check if your terminal command prompt has the virtual 
+          environment name in parenthesis(venv)
+          e.g.: (venv) PS C:\Users\paulo\Documents\CS-1520\Fall_2024\08 - Flas
+
+    (*) for Windows users, if you get an error message, it probably
+        means that you don't have permission to execute this command
+        as a regular user. Please type this instead:
+
+        run VS code IDE as admin and and put this in terminal: 
+
+            set-executionpolicy remotesigned
+
+5. Installing Flask library
+
+    pip install flask  flask-sqlalchemy
+
+6. To save the current environment configuration
+    a) save the current configuration:
+
+        pip freeze > requirements.txt
+
+    b) check if a file named requirements.txt has been created in your project directory
+    c) open this file and look at its contents
+
+7. To share your environment with someone:
+
+    pip install -r requirements.txt
+
+8. Move HTML, CSS, JavaScript, and images to their right location (for Flask applications)
+   a) All the HTML files shall be placed under a templates directory
+   b) all the CSS files shall be placed under a css diretory under the static directory
+   c) all the JavaScript files shall be placed under a js directory the static directory
+   d) all the image files shall be placed under images directory under the static directory
+
+9. Replace the links to the CSS and JS files in the main_menu.html file
+
+    <!--link rel="stylesheet" href="../static/css/index.css"-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+
+    <!--script type="text/javascript" src="../static/js/index.js"></script-->
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+10. Create the main python/Flask application and the root route
+    a) create the file mc_donalds_app.py
+    b) add the import for flask library
+    c) create an "app" object from Flask class
+
+app = Flask(__name__)
+
+    d) Create the root route to display the main menu 
+
+@app.route("/")
+def main_menu():
+    return render_template("main_menu.html")
+
+    e) add render_template to the list of Flask imports
+    f) add the command to run your program as a Flask application
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+    g) run the application and follow the link. Check if the 
+       main page is displayed in the terminal window type
+
+py main_meny.py
+
+       follow the link provided and check if the main_menu is displayed
+
+11. add functionality to the <form> tag in the main_menu.html file
+
+    <form action="{{ order_summary_reference }}" method="POST" id="order_summary_div">
+
+12. add an input in the render_template to provide the order_summary_reference value
+
+    a) update the render_template command:
+
+    return render_template("main_menu.html", order_summary_reference=url_for("order_summary"))
+
+    b) add url_for to the list of imports
+
+13. Create the order_summary route
+    a) Create the order_summary route
+@app.route("/order_summary", methods=["POST"])
+def order_summary():
+    return render_template("order_summary.html")
+
+    b) run your application, place an order, and click the "place order" button.
+    c) Check if the order_summary.html page is displayed on your browser
+
+14. Sending the order information to the order_summary.html file
+    a) retrieving the order info from the form object in the order_summary route
+
+order_items_in_String_format = request.form["order_summary"].strip()
+order_items_in_array_format = order_items_in_String_format.split(os.linesep)
+customer = request.form["customer"]
+global order_number
+order_number = order_number + 1
+
+    b) add "request" to the list of imports
+    c) add an import to os
+        import os
+
+    c) create a global variable order_number and set it to 0 (before or after the app = Flask(__name__))
+
+        order_number = 0
+
+    d) creating a new object to be sent to the order_summary.html page
+
+    current_order = { 
+        "customer" : customer, 
+        "order_items" : order_items_in_array_format, 
+        "order_number" : order_number}
+
+    e) update the render_template call
+
+    return render_template("order_summary.html", order=current_order)
+
+    f) update the order_summary.html file to handle the order
+
+    <h1>Order Summary</h1>
+    <h2>Order Number: {{ order.order_number }} </h2>
+    <h2>Customer Name: {{ order.customer }} </h2>
+
+    <ul>
+        <h2>List of items: {{ order.order_items }} </h2>
+    </ul>
+
+    g) run your application and place an order. Confirm that the order info is passed to the order_summary page
+
+    h) Making each order item to show as a list item in the order_summary.html page
+
+    <h2> List of items: </h2>
+    <ul>
+        {% for item in order.order_items %}
+            <li> {{ item }} </li>
+        {% endfor %}
+    </ul>
+
+    i) run your application and place an order. Confirm that the order info is passed to the order_summary page
+
+    j) going back from the order_summary page to the main_menu page automatically
+       in the order_summary.js file, add the following code
+
+var timeout = 5000;
+window.setTimeout(poller, timeout);
+function poller() {
+    window.location = "http://127.0.0.1:5000";
+}
+
+15. Saving the order into a database
+    a) Creating the "model" to be used with the database
+    b) create a new python file, order_model.py, in the project main directory
+    c) add necessary imports to use flask sqlalchemy functionality and a Base object
+
+from sqlalchemy import Column, String, Integer, Date
+from sqlalchemy.orm import declarative_base
+
+Base = declarative_base()
+
+    d) Create a python model, this model will be used to interface with the database
+
+class Order(Base):
+
+    __tablename__ = "Orders"
+
+    id = Column("id", Integer, primary_key=True, autoincrement=True)
+    customer_name = Column("customer_name", String, nullable=False)
+    orders = Column("orders", String, nullable=False)
+    order_number = Column("order_number", Integer, nullable=False)
+    date_created = Column("date_created", Date, nullable=False, default=datetime.datetime.now(datetime.timezone.utc))
+
+    e) add an import for the Date functionality:
+
+        import datetime
+
+    v) understanding the ID and date_created fields (no need to be initialized by our program)
+
+16. Adding database functionality in the main program (main_menu.py)
+    a) adding necessary imports
+    
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from order_model import Base, Order
+
+    b) defining database file name, and linking it to our application
+       (after the app = Flask(__name__) line, add the following lines:)
+
+engine = create_engine("sqlite:///orders.db", echo=True)
+Base.metadata.create_all(bind=engine)
+Session = sessionmaker(bind=engine)
+session = Session()
+
+17. Saving the current order into the database
+    a) creating an instance of the Order model
+
+    # order_obj is used to create a database-related object, which
+    # will be saved into the database file
+    order_obj = Order(customer_name=customer, 
+                      orders=order_items_in_String_format, 
+                      order_number=order_number)
+
+    b) saving the order into the database in the order_summary route (Risk operation)
+
+    try:
+        session.add(order_obj)
+        session.commit()
+        return render_template("order_summary.html", order=current_order)
+    except:
+        return 'There was an issue adding your task'
+
+    c) run your app and place an order.
+        i) check if the order.db file has been created in your project directory
+        ii) install VS Code extension to see the contents of a SQL file (binary)
+
+            SQLite Viewer by Florian Klampfer
+
+        iii) double click in the order.db and see contents in the VS Code IDE
+
+18. creating a toJSON() function in the model
+    a) in the Order class, add the following function
+
+        def toJSON(self):
+        return {"id":self.id,
+            "customer_name": self.customer_name,
+            "orders" : self.orders.strip().split(os.linesep),
+            "order_number" : self.order_number,
+            "date_created" : self.date_created}
+
+    b) update the order_summary route to use the toJSON function:
+
+    replace this block:
+
+        current_order = { 
+        "customer" : customer, 
+        "order_items" : order_items_in_array_format, 
+        "order_number" : order_number}
+
+    with:
+
+        new_order_in_JSON_format = new_order.toJSON()
+
+19. Creating the kitchen route
+
+    a) add the following code:
+
+@app.route("/kitchen/")
+def kitchen():
+    orders = session.query(Order).order_by(Order.date_created).all()
+    ordersInJSONFormat = []
+    for order in orders:
+        ordersInJSONFormat.append(order.toJSON())
+    print(ordersInJSONFormat)
+    return render_template("kitchen.html", orders=ordersInJSONFormat)
+
+    b) update the kitchen.html file:
+
+    <ul class="customer_order_class">
+        {% for order in orders %}
+        <li class="order_class">
+            <h3>Order Number: {{ order.order_number }}</h3>
+            <h3>Customer: {{ order.customer_name }}</h3>
+            <ul>
+                {% for currentOrder in order.orders %}
+                    <li> {{ currentOrder }}</li>
+                {% endfor %}
+            </ul>
+            <a href="{{ url_for('delete_order', order_id=order.id) }}"> delete order </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+20. Adding the delete route to the main application
+
+@app.route('/delete_order/<order_id>')
+def delete_order(order_id):
+    order_to_delete = session.query(Order).get(order_id)
+    if order_to_delete is None:
+        abort(404)
+    try:
+        session.delete(order_to_delete)
+        session.commit()
+        return redirect(url_for("kitchen"))
+    except:
+        return 'There was a problem deleting that task'

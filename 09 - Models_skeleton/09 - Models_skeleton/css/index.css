@@ -1,0 +1,116 @@
+body {
+    text-align: center;
+    background-image: url(../images/backgroud_image.jpeg);
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    max-width: 2000px;
+} 
+
+li {
+    float:left;
+    width: 22%;
+    list-style-type: none;
+    margin: 10px;
+    background-color: white;
+}
+
+img.items {
+    width: 90%;
+}
+
+p {
+    color: white;
+    padding:0px 0px 40px 0px;
+    width: 70%;
+    margin:auto;
+    font-size: 1.5em;
+}
+
+h1 {
+    color: white;
+    margin:20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+div#left_area_div {
+    float: left;
+    width: 60%;
+}
+
+textarea#order_summary {
+    font-size: 1.5em;;
+}
+
+div#main_menu {
+    clear:both;
+    height: auto;
+}
+
+div#burgers {
+    clear:both;
+    padding: 20px 0px 0px 0px;
+}
+
+.burgers_class input {
+    margin: 0px 0px 10px 0px;
+}
+
+div#drinks {
+    clear:both;
+    padding: 20px 0px 0px 0px;
+}
+
+.drinks_class input {
+    margin: 0px 0px 10px 0px;
+}
+
+div#coffees {
+    clear:both;
+    padding: 20px 0px 0px 0px;
+}
+
+.coffees_class input {
+    margin: 0px 0px 10px 0px;
+}
+
+div#desserts {
+    clear:both;
+    padding: 20px 0px 0px 0px;
+}
+
+.desserts_class input {
+    margin: 0px 0px 10px 0px;
+}
+
+#order_summary_div{
+    margin: 20px 0px 0px 0px;
+    float:left;
+    width: 35%;
+    padding: 0px 10px;
+}
+
+#order_summary_div h1 {
+    margin:0px 0px 30px 0px;
+    padding: 0px;
+}
+
+#order_summary_div input {
+    margin:20px auto;
+    font-size: 1.5em;
+}
+
+#order_summary_div label {
+    font-size: 1.5em;
+    color: white;
+}
+
+textarea {
+    display:block;
+}
+
+#submit_order_id {
+    display: block;
+}

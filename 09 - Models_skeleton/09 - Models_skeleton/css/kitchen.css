@@ -1,0 +1,26 @@
+a {
+    width:60%;
+    border: 1px solid black;
+    background-color:aquamarine;
+    margin:20px auto;
+    text-align: center;
+    display:block;
+    text-decoration: none;
+}
+
+ul.customer_order_class {
+    list-style-type: none;
+}
+
+h3, h1 {
+    text-align: center;
+    margin:10px;
+}
+
+li.order_class {
+    float:left;
+    background-color: darkorange;
+    width:30%;
+    margin:10px;
+
+}

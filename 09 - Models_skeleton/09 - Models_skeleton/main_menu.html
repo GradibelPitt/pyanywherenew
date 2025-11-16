@@ -1,0 +1,164 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <script type="text/javascript" src="../static/js/index.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>McDonald's Menu</h1>
+    <p>McDonald's is the world's largest chain of hamburger fast food
+        restaurants founded in 1940. It features various burgers,
+        types of chicken, chicken sandwiches, French fries, soft
+        drinks, breakfast items and desserts. In most markets,
+        McDonald's offers salads and vegetarian items, wraps and so on.</p>
+
+    <div id="left_area_div">
+        <div id="main_menu">
+            <h1>Main Menu</h1>
+            <ul>
+                <li>
+                    <a href="#burgers">
+                        <img class="items" src="{{ url_for('static', filename='images/burgers/big_mac.jpeg') }}" alt="">
+                        <h3> Burgers & Fries</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="#drinks">
+                        <img class="items" src="{{ url_for('static', filename='images/drinks/coca-cola.jpeg') }}" alt="">
+                        <h3> Drinks </h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="#coffees">
+                        <img class="items" src="{{ url_for('static', filename='images/coffees/mocha_latte.jpeg') }}" alt="">
+                        <h3> Coffees </h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="#desserts">
+                        <img class="items" src="{{ url_for('static', filename='images/desserts/McFlurry.jpeg') }}" alt="">
+                        <h3> Desserts </h3>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="burgers">
+            <h1> Burgers, Fries, and Co.</h1>
+            <ul>
+                <li class="burgers_class">
+                    <img class="items" src="{{ url_for('static', filename='images/burgers/big_mac.jpeg') }}" alt="">
+                    <h3> Big Mac</h3>
+                    <input type="text" value="0" size="1" id="big_mac_id">
+                </li>
+                <li class="burgers_class">
+                    <img class="items" src="{{ url_for('static', filename='images/burgers/cheeseburger.jpeg') }}" alt="">
+                    <h3> Cheeseburger </h3>
+                    <input type="text" value="0" size="1" id="chesseburger_id">
+                </li>
+                <li class="burgers_class">
+                    <img class="items" src="{{ url_for('static', filename='images/burgers/quarter_pounder.jpeg') }}" alt="">
+                    <h3> Quarter Pounder </h3>
+                    <input type="text" value="0" size="1" id="quarter_pounder_id">
+                </li>
+                <li class="burgers_class">
+                    <img class="items" src="{{ url_for('static', filename='images/burgers/fries.jpeg') }}" alt="">
+                    <h3> French Fries </h3>
+                    <input type="text" value="0" size="1" id="french_fries_id">
+                </li>
+            </ul>
+        </div>
+
+        <div id="drinks">
+            <h1> Drinks </h1>
+            <ul>
+                <li class="drinks_class">
+                    <img class="items" src="{{ url_for('static', filename='images/drinks/coca-cola.jpeg') }}" alt="">
+                    <h3> Coca-cola </h3>
+                    <input type="text" value="0" size="1" id="coca_cola_id">
+                </li>
+                <li class="drinks_class">
+                    <img class="items" src="{{ url_for('static', filename='images/drinks/dr_pepper.jpeg') }}" alt="">
+                    <h3> Dr. Pepper </h3>
+                    <input type="text" value="0" size="1" id="dr_pepper_id">
+                </li>
+                <li class="drinks_class">
+                    <img class="items" src="{{ url_for('static', filename='images/drinks/fanta_orange.jpeg') }}" alt="">
+                    <h3> Fanta Orange </h3>
+                    <input type="text" value="0" size="1" id="fanta_orange_id">
+                </li>
+                <li class="drinks_class">
+                    <img class="items" src="{{ url_for('static', filename='images/drinks/sprite.jpeg') }}" alt="">
+                    <h3> Sprite </h3>
+                    <input type="text" value="0" size="1" id="sprite_id">
+                </li>
+            </ul>
+        </div>
+
+        <div id="coffees">
+            <h1> Coffees </h1>
+            <ul>
+                <li class="coffees_class">
+                    <img class="items" src="{{ url_for('static', filename='images/coffees/cappuccino.jpeg') }}" alt="">
+                    <h3> Cappuccino </h3>
+                    <input type="text" value="0" size="1" id="cappuccino_id">
+                </li>
+                <li class="coffees_class">
+                    <img class="items" src="{{ url_for('static', filename='images/coffees/caramel_macchiato.jpeg') }}" alt="">
+                    <h3> Caramel Macchiato </h3>
+                    <input type="text" value="0" size="1" id="caramel_macchiato_id">
+                </li>
+                <li class="coffees_class">
+                    <img class="items" src="{{ url_for('static', filename='images/coffees/iced_mocha.jpeg') }}" alt="">
+                    <h3> Iced Mocha </h3>
+                    <input type="text" value="0" size="1" id="iced_mocha_id">
+                </li>
+                <li class="coffees_class">
+                    <img class="items" src="{{ url_for('static', filename='images/coffees/mocha_latte.jpeg') }}" alt="">
+                    <h3> Mocha Latte </h3>
+                    <input type="text" value="0" size="1" id="mocha_latte_id">
+                </li>
+            </ul>
+        </div>
+
+        <div id="desserts">
+            <h1> Desserts </h1>
+            <ul>
+                <li class="desserts_class">
+                    <img class="items" src="{{ url_for('static', filename='images/desserts/baked_apple_pie.jpeg') }}" alt="">
+                    <h3> Baked Apple</h3>
+                    <input type="text" value="0" size="1" id="baked_apple_id">
+                </li>
+                <li class="desserts_class">
+                    <img class="items" src="{{ url_for('static', filename='images/desserts/chocolate_chips_cookie.jpeg') }}" alt="">
+                    <h3> Cookies </h3>
+                    <input type="text" value="0" size="1" id="chocolate_chips_cookie_id">
+                </li>
+                <li class="desserts_class">
+                    <img class="items" src="{{ url_for('static', filename='images/desserts/hot_fudge_sundae.jpeg') }}" alt="">
+                    <h3> Hot Fudge Sundae </h3>
+                    <input type="text" value="0" size="1" id="hot_fudge_sundae_id">
+                </li>
+                <li class="desserts_class">
+                    <img class="items" src="{{ url_for('static', filename='images/desserts/McFlurry.jpeg') }}" alt="">
+                    <h3> Mac Flurry </h3>
+                    <input type="text" value="0" size="1" id="mc_flurry_id">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <form action="" method="" id="order_summary_div">
+        <h1>Order Summary</h1>
+        <textarea name="order_summary" id="order_summary" cols="50" rows="20"></textarea>
+        <label for="customer"> Customer Name: </label>
+        <input type="text" id="customer" name="customer" placeholder="Enter Name">
+        <input type="Submit" value="Submit Order" id="submit_order_id">
+    </form>
+</body>
+
+</html>
