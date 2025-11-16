@@ -151,6 +151,7 @@ pyanywherenew/
 - **Protected Routes**: The `/profile` route requires authentication
 - **CSRF Protection**: Built-in with Flask's session management
 - **Input Validation**: Basic validation on registration and login forms
+- **Debug Mode Control**: Debug mode is disabled by default in production for security
 
 ## User Model
 
@@ -167,6 +168,7 @@ The `User` model includes the following fields:
 The app uses environment variables for configuration:
 
 - `SECRET_KEY`: Secret key for session management (set in `.env` or environment)
+- `FLASK_DEBUG`: Enable debug mode for development (set to `True` in `.env`, default is `False` for security)
 - `SQLALCHEMY_DATABASE_URI`: Database connection string (defaults to `sqlite:///auth.db`)
 
 ## Development
