@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Flask Auth App{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to Flask Auth App</h1>
+    {% if current_user.is_authenticated %}
+        <p>Hello, <strong>{{ current_user.username }}</strong>!</p>
+        <p>You are logged in. Visit your <a href="{{ url_for('auth.profile') }}">profile</a> to see your details.</p>
+    {% else %}
+        <p>A simple Flask application with user authentication.</p>
+        <div class="button-group">
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Get Started</a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Login</a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>🔐 Secure Authentication</h3>
+            <p>Password hashing with Werkzeug security.</p>
+        </div>
+        <div class="feature-card">
+            <h3>👤 User Management</h3>
+            <p>Register, login, and manage user sessions.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🛡️ Protected Routes</h3>
+            <p>Access control for authenticated users only.</p>
+        </div>
+        <div class="feature-card">
+            <h3>💾 SQLite Database</h3>
+            <p>Persistent user data with SQLAlchemy.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

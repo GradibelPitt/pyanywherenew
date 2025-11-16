@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - Flask Auth App{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-card">
+        <h1>User Profile</h1>
+        
+        <div class="profile-info">
+            <div class="profile-item">
+                <label>Username:</label>
+                <span>{{ user.username }}</span>
+            </div>
+
+            <div class="profile-item">
+                <label>Email:</label>
+                <span>{{ user.email }}</span>
+            </div>
+
+            <div class="profile-item">
+                <label>User ID:</label>
+                <span>{{ user.id }}</span>
+            </div>
+
+            <div class="profile-item">
+                <label>Member Since:</label>
+                <span>{{ user.created_at.strftime('%B %d, %Y at %H:%M') }}</span>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <a href="{{ url_for('auth.index') }}" class="btn btn-secondary">Back to Home</a>
+            <a href="{{ url_for('auth.logout') }}" class="btn btn-primary">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
