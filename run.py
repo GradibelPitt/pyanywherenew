@@ -105,4 +105,6 @@ def logout():
 
 
 if __name__ == '__main__':
+    # Note: debug=True is used for development/lab purposes only.
+    # In production, set debug=False or use an environment variable.
     app.run(debug=True)

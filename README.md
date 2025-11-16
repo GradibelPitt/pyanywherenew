@@ -62,13 +62,15 @@ The application will start on `http://127.0.0.1:5000/`
 7. You'll be taken to your profile page
 8. Click "Logout" to end your session
 
-## Important Security Note
+## Important Security Notes
 
-**⚠️ WARNING: This application stores passwords in plaintext in the database.**
+**⚠️ WARNING: This application has the following security considerations:**
 
-This is intentionally done for lab compatibility purposes to match the existing login logic that expects a plain dictionary of usernames and passwords. In a real-world application, passwords should ALWAYS be hashed using a secure hashing algorithm like bcrypt or argon2.
+1. **Plaintext Passwords**: Passwords are stored in plaintext in the database. This is intentionally done for lab compatibility purposes to match the existing login logic that expects a plain dictionary of usernames and passwords. In a real-world application, passwords should ALWAYS be hashed using a secure hashing algorithm like bcrypt or argon2.
 
-**DO NOT use this code in production without implementing proper password hashing!**
+2. **Debug Mode**: The Flask application runs in debug mode (`debug=True`) for development/lab purposes. In production, debug mode should be disabled as it can expose sensitive information and allow code execution through the debugger.
+
+**DO NOT use this code in production without implementing proper security measures!**
 
 ## File Structure
 
