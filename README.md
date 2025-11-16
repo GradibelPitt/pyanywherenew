@@ -107,14 +107,21 @@ The User model is defined in `09 - Models_skeleton/models.py` with the following
 
 ## Security Note ⚠️
 
-**IMPORTANT: This application stores passwords in plaintext in the database.**
+**IMPORTANT: This application has several security limitations intentional for lab purposes:**
 
-This is **intentionally insecure** and done only for lab compatibility and educational purposes. The original lab code used a simple dictionary with plaintext passwords, and this implementation maintains that behavior to demonstrate database integration without introducing additional complexity.
+1. **Plaintext Passwords**: Passwords are stored in plaintext in the database. This is intentionally insecure and done only for lab compatibility and educational purposes. The original lab code used a simple dictionary with plaintext passwords, and this implementation maintains that behavior to demonstrate database integration without introducing additional complexity.
 
-**In a production environment, you should NEVER store passwords in plaintext.** Always use proper password hashing libraries such as:
-- `werkzeug.security` (built into Flask)
-- `bcrypt`
-- `argon2`
+2. **Debug Mode Enabled**: The Flask application runs with `debug=True` for easier development and learning. This should be disabled in production as it can allow attackers to run arbitrary code through the debugger.
+
+3. **Hardcoded Secret Key**: The session secret key is hardcoded. In production, use a secure, randomly generated secret key stored in environment variables.
+
+**In a production environment, you should NEVER:**
+- Store passwords in plaintext - always use proper password hashing libraries such as:
+  - `werkzeug.security` (built into Flask)
+  - `bcrypt`
+  - `argon2`
+- Run Flask with `debug=True`
+- Use hardcoded secret keys
 
 Example of secure password handling:
 ```python

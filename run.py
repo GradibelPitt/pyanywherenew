@@ -118,4 +118,6 @@ def logout():
 
 
 if __name__ == '__main__':
+    # Debug mode is enabled for lab development
+    # WARNING: Disable debug mode in production environments
     app.run(debug=True)
